@@ -140,10 +140,42 @@
     </section>
 
     <section id="contact" class="contact section-pad">
-      <p class="eyebrow">Ready when you are</p>
-      <h2>Need a logo that feels official?</h2>
-      <p>Send the name, industry, colors, references, and deadline. SHOPNASGRAPHICS turns the idea into a visual identity.</p>
-      <a class="btn primary" href="mailto:shopnasgfx@gmail.com?subject=Logo%20Project%20Inquiry">Start a logo project</a>
+      <div class="contact-copy">
+        <p class="eyebrow">Ready when you are</p>
+        <h2>Need a logo that feels official?</h2>
+        <p>Send the name, industry, colors, references, and deadline. SHOPNASGRAPHICS turns the idea into a visual identity.</p>
+      </div>
+
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/xykdkzly" method="POST">
+        <input type="hidden" name="_subject" value="New SHOPNASGRAPHICS Logo Inquiry">
+        <input type="hidden" name="source" value="SHOPNASGRAPHICS Logo Showcase">
+        <div class="field-row">
+          <label>
+            <span>Name</span>
+            <input type="text" name="name" placeholder="Your name" required>
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" placeholder="you@example.com" required>
+          </label>
+        </div>
+        <label>
+          <span>Project type</span>
+          <select name="project_type" required>
+            <option value="">Choose one</option>
+            <option>Logo Design</option>
+            <option>Brand Identity</option>
+            <option>Packaging / Label</option>
+            <option>Full Visual System</option>
+          </select>
+        </label>
+        <label>
+          <span>Project details</span>
+          <textarea name="message" rows="5" placeholder="Brand name, industry, colors, references, deadline, and anything else I should know." required></textarea>
+        </label>
+        <button class="btn primary" type="submit">Send project inquiry</button>
+        <p class="form-note" id="formNote">Submits through the connected Formspree inbox.</p>
+      </form>
     </section>
   </main>
 

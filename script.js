@@ -28,3 +28,38 @@ modal.addEventListener('click', (event) => {
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') closeModal();
 });
+
+const contactForm = document.getElementById('contactForm');
+const formNote = document.getElementById('formNote');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const button = contactForm.querySelector('button[type="submit"]');
+    const originalText = button.textContent;
+    button.disabled = true;
+    button.textContent = 'Sending...';
+    formNote.className = 'form-note';
+    formNote.textContent = 'Sending your inquiry...';
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { Accept: 'application/json' }
+      });
+
+      if (!response.ok) throw new Error('Formspree request failed');
+
+      contactForm.reset();
+      formNote.className = 'form-note success';
+      formNote.textContent = 'Inquiry sent. SHOPNASGRAPHICS will follow up.';
+    } catch (error) {
+      formNote.className = 'form-note error';
+      formNote.textContent = 'Could not send through Formspree. Try again or email directly.';
+    } finally {
+      button.disabled = false;
+      button.textContent = originalText;
+    }
+  });
+}
